@@ -1,9 +1,7 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
 
-const Map = () => {
-  const coordinates = { lat: 37.7749, lng: -122.4194 }; // Example coordinates for San Francisco
-
+const Map = ({ setCoordinates, setBounds, coordinates }) => {
   return (
     <div
       style={{
@@ -14,13 +12,17 @@ const Map = () => {
       }}
     >
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyCLp0V-GRfWodqixLvMK01d_rAX2pgQ31w" }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_TRIPADVISOR_API_KEY }}
         defaultCenter={coordinates}
         center={coordinates}
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
         options={{}}
-        onChange={() => {}}
+        onChange={(e) => {
+          console.log(e);
+          setCoordinates({ lat: e.center.lat, lng: e.center.lng });
+          setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
+        }}
         onChildClick={() => {}}
       ></GoogleMapReact>
     </div>

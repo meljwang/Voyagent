@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const TripGPT = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default TripGPT
+export default TripGPT;
