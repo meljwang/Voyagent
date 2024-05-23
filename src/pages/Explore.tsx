@@ -9,6 +9,7 @@ const Explore = () => {
   const [places, setPlaces] = useState([]);
   const [coordinates, setCoordinates] = useState({});
   const [bounds, setBounds] = useState({});
+  const [selectedPlace, setSelectedPlace] = useState({});
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -62,7 +63,15 @@ const Explore = () => {
                     )
                     .map((place, index) => (
                       <div key={index} className="w-full sm:w-1/2 px-4 mb-4">
-                        <PlaceDetails place={place} />
+                        <PlaceDetails
+                          place={place}
+                          onSelect={() =>
+                            setSelectedPlace({
+                              lat: Number(place.latitude),
+                              lng: Number(place.longitude),
+                            })
+                          }
+                        />
                       </div>
                     ))}
                 </div>
@@ -78,6 +87,7 @@ const Explore = () => {
             setBounds={setBounds}
             coordinates={coordinates}
             places={places}
+            selectedPlace={selectedPlace}
           />
         </div>
       </div>

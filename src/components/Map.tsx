@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GoogleMapReact from "google-map-react";
-import { Card, Badge } from "flowbite-react";
+import { Card } from "flowbite-react";
 
-const Map = ({ setCoordinates, setBounds, coordinates, places }) => {
+const Map = ({
+  setCoordinates,
+  setBounds,
+  coordinates,
+  places,
+  selectedPlace,
+}) => {
+  useEffect(() => {
+    if (selectedPlace) {
+      setCoordinates(selectedPlace);
+    }
+  }, [selectedPlace, setCoordinates]);
+
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
@@ -53,14 +65,13 @@ const Map = ({ setCoordinates, setBounds, coordinates, places }) => {
       }}
     >
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.REACT_APP_TRIPADVISOR_API_KEY }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
         defaultCenter={coordinates}
         center={coordinates}
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
         options={{}}
         onChange={(e) => {
-          console.log(e);
           setCoordinates({ lat: e.center.lat, lng: e.center.lng });
           setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
         }}
@@ -111,7 +122,7 @@ const Map = ({ setCoordinates, setBounds, coordinates, places }) => {
                       {place.rating}
                     </span>
                     {renderStars(place.rating)}
-                    <span className="text-gray-500 dark:text-gray-400 ml-2 text-s">
+                    <span className="text-gray-500 dark:text-gray-400 ml-2 text-sm">
                       ({place.num_reviews} reviews)
                     </span>
                   </div>

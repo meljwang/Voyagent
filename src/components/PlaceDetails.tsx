@@ -1,12 +1,15 @@
 import { Card, Badge } from "flowbite-react";
 import React from "react";
 
-const PlaceDetails = ({ place }) => {
+const PlaceDetails = ({ place, onSelect }) => {
   const rating = Math.floor(place.rating);
   const hasHalfStar = place.rating % 1 !== 0;
 
   return (
-    <Card className="fixed-size-card mx-auto overflow-hidden rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
+    <Card
+      className="fixed-size-card mx-auto overflow-hidden rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 cursor-pointer"
+      onClick={onSelect}
+    >
       <img
         className="w-full h-40 object-cover"
         src={
