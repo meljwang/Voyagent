@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import GoogleMapReact from "google-map-react";
-import { Card } from "flowbite-react";
+import { Card, Button } from "flowbite-react";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const Map = ({
   setCoordinates,
@@ -65,7 +66,7 @@ const Map = ({
       }}
     >
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY }}
         defaultCenter={coordinates}
         center={coordinates}
         defaultZoom={14}
@@ -115,6 +116,7 @@ const Map = ({
                     {place.name}
                   </h5>
                   <p style={{ fontSize: "12px", color: "#666" }}>
+                    <i className="fas fa-map-marker-alt mr-2"></i>
                     {place.address}
                   </p>
                   <div className="flex items-center mb-4">

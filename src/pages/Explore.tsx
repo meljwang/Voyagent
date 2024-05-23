@@ -42,7 +42,7 @@ const Explore = () => {
       <div className="flex flex-grow mt-4">
         <div className="flex-1 flex flex-col">
           <div className="my-4">
-            <SearchBar />
+            <SearchBar setCoordinates={setCoordinates} />
           </div>
           <div className="card p-4 m-4 flex-1 bg-white rounded shadow-lg">
             <div className="scrollable-list">
