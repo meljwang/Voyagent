@@ -79,10 +79,12 @@ const PlaceDetails = ({ place, onSelect }) => {
           ))}
         </div>
         <div className="flex flex-col items-center gap-2 mt-4">
-          <p className="mt-2 text-sm text-gray-700 dark:text-gray-400">
-            <i className="fas fa-phone-alt mr-2"></i>
-            {place.phone}
-          </p>
+          {place.phone && (
+            <p className="mt-2 text-sm text-gray-700 dark:text-gray-400">
+              <i className="fas fa-phone-alt mr-2"></i>
+              {place.phone}
+            </p>
+          )}
           <Button
             size="small"
             color="primary"
